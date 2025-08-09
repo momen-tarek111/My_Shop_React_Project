@@ -9,7 +9,7 @@ export const Footer = () => {
                     <span className="footer-top-text">تواصل معانا عبر الايميل</span>
                     <span className='footer-top-email-address'>
                         <i className="bi bi-envelope"></i>
-                        momen@gmail.com
+                        momen.tarek.nagaty@gmail.com
                     </span>
                 </div>
             </div>
