@@ -16,7 +16,7 @@ const SingleProduct = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(getProductById(id))
-  },[id])
+  },[dispatch, id])
   const addToCartHandler=()=>{
     dispatch(addToCart({
       id:product?.id,

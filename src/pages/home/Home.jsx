@@ -13,7 +13,7 @@ const Home = () => {
     const {products}=useSelector(state=>state.product )
     useEffect(()=>{
         dispatch(fetchProducts())   
-    },[])
+    },[dispatch])
     const laptops = products.filter(p => p.isLaptop === true)
     const mobiles = products.filter(p => p.isLaptop === false)
     return (
