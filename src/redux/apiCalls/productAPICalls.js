@@ -1,30 +1,36 @@
 import { productActions } from "../slices/productSlices";
 
+const BASE_URL = "https://6ad5203f48476c0785d96b3a.mockapi.io/products";
+
 export function fetchProducts() {
     return async (dispatch) => {
         try {
-            // const response = await fetch("http://localhost:5000/products")
-            const response = await fetch("https://my-json-server.typicode.com/momen-tarek111/json_server_My_Shop_Project/products")
-            const data = await response.json()
-            dispatch(productActions.setProducts(data))
+            const response = await fetch(BASE_URL);
+            const data = await response.json();
+            dispatch(productActions.setProducts(data));
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
-
+    };
 }
+
 export function getProductById(productId) {
     return async (dispatch) => {
         try {
-            dispatch(productActions.setLoading())
-            // const response = await fetch(`http://localhost:5000/products/${productId}`)
-            const response = await fetch(`https://my-json-server.typicode.com/momen-tarek111/json_server_My_Shop_Project/products/${productId}`)
-            const data = await response.json()
-            dispatch(productActions.setProduct(data))
-            dispatch(productActions.clearLoading())
+            dispatch(productActions.setLoading());
+            
+            const response = await fetch(BASE_URL);
+            const data = await response.json();
+            const product = data.find((item) => Number(item.id) === Number(productId));
+            if (product) {
+                dispatch(productActions.setProduct(product));
+            } else {
+                console.log("Product not found");
+            }
+            dispatch(productActions.clearLoading());
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            dispatch(productActions.clearLoading());
         }
-    }
-
+    };
 }
